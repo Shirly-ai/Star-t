@@ -1,0 +1,113 @@
+#ifndef _point_h
+#define _point_h
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Triangle;
+class Point {
+	protected:
+		double x, y;
+	public:
+		Point(double X, double Y);
+		~Point();
+		friend Triangle;
+};
+class Triangle {
+	private:
+		Point a, b, c;
+	public:
+		Triangle(double x1, double y1, double x2, double y2, double x3, double y3);
+		double girth();
+		double area();
+		~Triangle();
+};
+class Circle: public Point {
+	private:
+		double X, Y;
+	public:
+		Circle(double x1, double y1, double x2, double y2);
+		double girth();
+		double area();
+		~Circle();
+};
+#endif
+#include"point.h"
+Point::Point(double X, double Y) {
+	x = X;
+	y = Y;
+}
+Point::~Point() {
+}
+Triangle::Triangle(double x1, double y1, double x2, double y2, double x3, double y3):
+	a(x1, y1), b(x2, y2), c(x3, y3) {}
+double Triangle::girth() {
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))
+	       + sqrt((a.x - c.x) * (a.x - c.x) + (a.y - c.y) * (a.y - c.y)) +
+	       sqrt((b.x - c.x) * (b.x - c.x) + (b.y - c.y) * (b.y - c.y));
+}
+double Triangle::area() {
+	double l1, l2, l3;
+	l1 = sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+	l2 = sqrt((a.x - c.x) * (a.x - c.x) + (a.y - c.y) * (a.y - c.y));
+	l3 = sqrt((b.x - c.x) * (b.x - c.x) + (b.y - c.y) * (b.y - c.y));
+	double p = (l1 + l2 + l3) / 2;
+	return  sqrt(p * (p - l1) * (p - l2) * (p - l3));
+}
+Triangle::~Triangle() {
+}
+Circle::Circle(double x1, double y1, double x2, double y2): Point(x1, y1) {
+	X = x2;
+	Y = y2;
+}https://github.com/Shirly-ai/Star-t/tree/my-shujujiegou-cpp1
+double Circle::girth() {
+	double r;
+	r = sqrt((X - x) * (X - x) + (Y - y) * (Y - y));
+	return 2 * r * 3.14;
+}
+double Circle::area() {
+	double r;
+	r = sqrt((X - x) * (X - x) + (Y - y) * (Y - y));
+	return r * r * 3.14;
+}
+Circle::~Circle() {
+}
+#include"point.h"
+Point::Point(double X, double Y) {
+	x = X;
+	y = Y;
+}
+Point::~Point() {
+}
+Triangle::Triangle(double x1, double y1, double x2, double y2, double x3, double y3):
+	a(x1, y1), b(x2, y2), c(x3, y3) {}
+double Triangle::girth() {
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))
+	       + sqrt((a.x - c.x) * (a.x - c.x) + (a.y - c.y) * (a.y - c.y)) +
+	       sqrt((b.x - c.x) * (b.x - c.x) + (b.y - c.y) * (b.y - c.y));
+}
+double Triangle::area() {
+	double l1, l2, l3;
+	l1 = sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+	l2 = sqrt((a.x - c.x) * (a.x - c.x) + (a.y - c.y) * (a.y - c.y));
+	l3 = sqrt((b.x - c.x) * (b.x - c.x) + (b.y - c.y) * (b.y - c.y));
+	double p = (l1 + l2 + l3) / 2;
+	return  sqrt(p * (p - l1) * (p - l2) * (p - l3));
+}
+Triangle::~Triangle() {
+}
+Circle::Circle(double x1, double y1, double x2, double y2): Point(x1, y1) {
+	X = x2;
+	Y = y2;
+}
+double Circle::girth() {
+	double r;
+	r = sqrt((X - x) * (X - x) + (Y - y) * (Y - y));
+	return 2 * r * 3.14;
+}
+double Circle::area() {
+	double r;
+	r = sqrt((X - x) * (X - x) + (Y - y) * (Y - y));
+	return r * r * 3.14;
+}
+Circle::~Circle() {
+}
