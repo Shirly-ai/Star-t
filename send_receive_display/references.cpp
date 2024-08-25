@@ -12,6 +12,12 @@ int socket(int domain, int type, int protocol);
 
 #include<sys/socket.h>
 int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen);
+  struct sockaddr_in servaddr;//为了让bind()绑定IP和端口号而定义的
+  bzero(&serv_addr, sizeof(serv_addr));//将网络地址清空
+  servaddr.sin_family = AF_INET;//与socket()的第一个参数 int domain一样的协议
+  servaddr.sin_addr.s_addr = htonl(INADDR_ANY);//绑定IP
+  servaddr.sin_port = htons(6666);//绑定端口号
+  bind(serv_addr, (struct sockaddr*)&serv_addr, sizeof(serv_addr））;
 //成功:返回 0
 //失败:返回 -1
 
