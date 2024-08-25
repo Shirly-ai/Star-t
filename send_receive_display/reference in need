@@ -1,1 +1,16 @@
 https://www.cnblogs.com/weijing24/p/4808814.html
+
+服务端：
+socket()//创建套接字
+bind()//分配套接字地址
+listen()//等待连接请求状态
+accept()//允许连接
+read/write()//允许数据交换
+close()//断开连接
+
+客户端：
+socket()//创建套接字
+//内核会随机分配不冲突套接字地址所以不需要bind()
+connect()//请求连接
+read/write()//数据交换
+close()//断开连接
