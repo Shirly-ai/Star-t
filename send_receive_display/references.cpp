@@ -52,24 +52,43 @@ int connect(int sockfd, struct sockaddr *serv_addr, socklen_t addrlen);
 成功:返回 0
 失败:返回 -1
 
-
 #include<sys/types.h>
 #include<sys/stat.h>
 #include<fcntl.h>
 int open(const char *path, int flag);
-成功:返回文件描述符
-失败:返回 -1
+第一个参数： const char *path：
+				文件名的字符串地址
+第二个参数： int flag：
+				文件打开模式
+返回值：
+		成功：返回文件描述符
+		失败：-1
+//文件打开模式：
+//O_CREAT 必要时创建文件
+//O_TRUNC 删除全部现有数据
+//O_APPEND 维持现有数据 保存到其后面
+//O_RDONLY 只读打开
+//O_WRONLY 只写打开
+//O_RDWR 读写打开
 
 #include<unistd.h>
 int close(int fd);
+//fd:需要关闭的文件或套接字的文件描述符
 成功:返回 0 
 失败:返回 -1
 
 #include<unistd.h>
 ssize_ write(int fd, const void *buf, size_t nbytes);
+//fd:显示数据传输对象的文件描述符
+//const void *buf:保存要传输数据的缓冲地址值
+//nbytes:要传数据的字节数
 成功:返回写入的字节数
 失败:返回 -1
 
 #include<unistd.h>
 ssize_t read(int fd, void *buf, size_t nbytes);
+//fd:显示数据接收对象的文件描述符
+//*buf:保存接收数据的缓冲地址值
+//nbytes:要接收数据的最大字节数
 成功:返回接受的字节数(但遇到文件结尾则返回 0 )
+失败：-1
