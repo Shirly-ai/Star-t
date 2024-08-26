@@ -11,15 +11,31 @@ int socket(int domain, int type, int protocol);
 //失败:返回 -1
 
 #include<sys/socket.h>
+#include <arpa/inet.h>//大小字节转化
 int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen);
   struct sockaddr_in servaddr;//为了让bind()绑定IP和端口号而定义的
   bzero(&serv_addr, sizeof(serv_addr));//将网络地址清空
   servaddr.sin_family = AF_INET;//与socket()的第一个参数 int domain一样的协议
   servaddr.sin_addr.s_addr = htonl(INADDR_ANY);//绑定IP
   servaddr.sin_port = htons(6666);//绑定端口号
+//h:host表示主机字节序（小端字节序）；n:network表示网络字节序（大端字节序）；l:long32位长整型；s:short16位短整型
+//输入ip和端口后，计算机会自动处理成小字节，于是用htons/l转化为大字节。
   bind(serv_addr, (struct sockaddr*)&serv_addr, sizeof(serv_addr））;
 //成功:返回 0
 //失败:返回 -1
+
+/*
+#include <arpa/inet.h>
+//主机字节序(小端字节序)转换成网络字节序(大端字节序)
+uint32_t htonl(uint32_t hostlong);
+uint16_t htons(uint16_t hostshort);
+
+//网络字节序(大端字节序)转换成主机字节序(小段字节序)
+uint32_t ntohl(uint32_t netlong);
+uint16_t ntohs(uint16_t netshort);
+
+*/
+
 
 #include<sys/socket.h>	
 int listen(int sockfd, int backlog);
